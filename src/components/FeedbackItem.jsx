@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Card from './Card';
+
 
 
 const FeedbackItem = ({item}) => { 
   return (
-      <div className="card">
+      <Card >
           <div className="num-display">{item.rating}</div>
           <div className="text">{item.text}</div>
           
-      </div>
+      </Card>
     );
 }
 
