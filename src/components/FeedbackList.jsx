@@ -2,7 +2,7 @@ import React from 'react';
 import FeedbackItem from './FeedbackItem';
 
 
-const FeedbackList = ({feedback}) => {
+const FeedbackList = ({feedback, handleDelete}) => {
     if(!feedback || feedback.length === 0){
         <p>No feedback Recieved</p>
     }
@@ -10,9 +10,10 @@ const FeedbackList = ({feedback}) => {
         <div>
            
             {feedback.map((item) =>(
-                 <FeedbackItem key={item.id} item={item}  />
+                 <FeedbackItem key={item.id} item={item} 
+                 handleDelete={handleDelete} />
             ))}
-        </div>
+        </div> 
   )
 };
 
