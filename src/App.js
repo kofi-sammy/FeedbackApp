@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import FeedbackForm from './components/FeedbackForm';
 
 import FeedbackList from './components/FeedbackList';
 import FeedbackStats from './components/FeedbackStats';
@@ -19,6 +20,7 @@ const App = ({}) => {
   return (
     <React.Fragment>
         <Header bgColor='lightgreen' color='white'/>
+         <FeedbackForm/>
         <FeedbackStats feedback={feedback}/>
           <div className='container'>
             <FeedbackList feedback={feedback}  handleDelete={deleteFeedback}/>
