@@ -3,7 +3,7 @@ import { ReactPropTypes } from 'react';
 
 const Button = ({children, version, type, isDisabled}) => {
   return (
-    <button type={type} isDisabled={isDisabled} className={`btn btn-${version}`}>
+    <button type={type} isdisabled={isDisabled} className={`btn btn-${version}`}>
         {children}
     </button>
   );

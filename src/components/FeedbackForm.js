@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from './Card';
 import Button from './Button';
+import RatingSelect from './RatingSelect';
 
 const FeedbackForm = () => {
   const [text,setText] = useState('')
@@ -18,11 +19,14 @@ const FeedbackForm = () => {
         setMessage(null)
         setBtnDisabled(false)
     }
+
     setText(event.target.value)
   }
+
   return (
    <Card style={{color:'#fff', backgroundColor:'white'}}>
        <form>
+         <RatingSelect select={(rating)=>console.log(rating)}/>
            <h2>How would you rate your services with us</h2>
             <div className='input-group'>
                <input type="text" onChange={formHandler} value={text} placeholder='Write a comment'/>
