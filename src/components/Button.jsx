@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactPropTypes } from 'react';
 
 const Button = ({children, version, type, isDisabled}) => {
   return (
