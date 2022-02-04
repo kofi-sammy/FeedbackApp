@@ -1,16 +1,44 @@
-import { createContext,useState } from "react";
+import { createContext,useState, useEffect} from "react";
 import {v4 as uuidv4} from 'uuid';
-import FeedbackData from "../data/FeedbackData";
+
+
+import axios from "axios";
+
+const api = axios.create({
+  baseURL:`http://localhost:5000/feedback`,
+  timeout: 5000
+})
 
 const FeedbackContext = createContext()
 
 export const FeedbackProvider = ({children}) => {
-    const [feedback, setFeedback] = useState(FeedbackData)
+    const [isLoading, setIsLoading] = useState(true)
+    const [feedback, setFeedback] = useState([])
     const[feedbackEdit, setFeedbackEdit] = useState({
       item:{},
       edit: false
     })
 
+    useEffect(() => {
+      getFeedback()
+    }, []);
+
+    //Getting Data from the server
+
+    const getFeedback = async () => {
+
+      try {
+          let res = await api.get('/');
+          setFeedback(res.data);
+          setIsLoading(false)
+      } catch(err){
+       console.log(err.res.data)
+       console.log(err.res.status)
+       console.log(err.res.header)
+     }
+     
+    }
+    
     //Delete Feedback
     const deleteFeedback=(id)=>{
         if (window.confirm('Are sure you want want delete this card?')) {
@@ -42,6 +70,7 @@ export const FeedbackProvider = ({children}) => {
     return <FeedbackContext.Provider value ={{
         feedback,
         feedbackEdit,
+        isLoading,
         deleteFeedback, 
         addFeedback,
         editFeedbackHandler,
