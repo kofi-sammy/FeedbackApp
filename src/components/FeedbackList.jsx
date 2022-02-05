@@ -2,7 +2,8 @@ import{motion, AnimatePresence} from 'framer-motion'
 import React, { useContext } from 'react';
 import FeedbackItem from './FeedbackItem';
 import FeedbackContext from '../context/FeedbackbackContext'
-import {Oval} from 'react-loader-spinner';
+import Spinner from './Spinner';
+
 
 
 const FeedbackList = () => {
@@ -12,10 +13,7 @@ const FeedbackList = () => {
         <p>No feedback Recieved</p>
     }
   return isLoading ? (
-                
-              <>
-                <Oval color="#00BFFF" height={80} width={80} timeout={1000000000000}/> 
-              </>
+                <Spinner/>
               ):(
           <div className='feedBack-list'>
            <AnimatePresence>

@@ -28,7 +28,7 @@ export const FeedbackProvider = ({children}) => {
     const getFeedback = async () => {
 
       try {
-          let res = await api.get('/');
+          let res = await api.get('/t');
           setFeedback(res.data);
           setIsLoading(false)
       } catch(err){
