@@ -28,7 +28,7 @@ export const FeedbackProvider = ({children}) => {
     const getFeedback = async () => {
 
       try {
-          let res = await api.get('/t');
+          let res = await api.get('/');
           setFeedback(res.data);
           setIsLoading(false)
       } catch(err){
@@ -40,12 +40,18 @@ export const FeedbackProvider = ({children}) => {
     }
     
     //Delete Feedback
-    const deleteFeedback=(id)=>{
-        if (window.confirm('Are sure you want want delete this card?')) {
-          setFeedback(feedback.filter((item) => item.id !== id))
-        }
 
+    const deleteFeedback = async (id) => {
+
+      try {
+            api.delete(`/${id}`);
+            if (window.confirm('Are sure you want delete this card?')) {
+              setFeedback(feedback.filter((item) => item.id !== id))
+            }
+      } catch(err){
+        console.log(`Error:${err.message}`)
       }
+    }
        //Update feedback item
         const updateFeedback =(id,updateItem)=>{
          setFeedbackEdit(
@@ -80,4 +86,4 @@ export const FeedbackProvider = ({children}) => {
     </FeedbackContext.Provider>
 }
 
-export default FeedbackContext;
+  export default FeedbackContext;
